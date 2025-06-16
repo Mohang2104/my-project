@@ -1,0 +1,187 @@
+\*App.js
+import React, { useState, useEffect } from 'react';
+import './App.css';
+
+function App() {
+  const [task, setTask] = useState('');
+  const [todos, setTodos] = useState([]);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const addTask = () => {
+    if (task.trim() === '') return;
+    const newTask = {
+      id: Date.now(),
+      text: task,
+      date: currentTime.toLocaleDateString(),
+      time: currentTime.toLocaleTimeString(),
+    };
+    setTodos([newTask, ...todos]);
+    setTask('');
+  };
+
+  const deleteTask = (id) => {
+    const filtered = todos.filter((todo) => todo.id !== id);
+    setTodos(filtered);
+  };
+
+  return (
+    <div className="app">
+      <h1>📝 Day-To-Day Planning Project</h1>
+      <p className="intro">
+        You Should completed these all the work in Today. ALL THE BEST BUDDY! <br />
+        <strong>Today:</strong> {currentTime.toLocaleDateString()} | <strong>Time:</strong> {currentTime.toLocaleTimeString()}
+      </p>
+
+      <div className="input-area">
+        <input
+          type="text"
+          placeholder="Type your task..."
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+        />
+        <button onClick={addTask}>➕ Add</button>
+      </div>
+
+      <ul className="todo-list">
+        {todos.map((todo) => (
+          <li key={todo.id} className="todo-item">
+            <div>
+              <h3>{todo.text}</h3>
+              <p>🗓 {todo.date} ⏰ {todo.time}</p>
+            </div>
+            <button className="del-btn" onClick={() => deleteTask(todo.id)}>🗑</button>
+          </li>
+        ))}
+        {todos.length === 0 && <p className="empty">No tasks yet. Add one above!</p>}
+      </ul>
+    </div>
+  );
+}
+
+export default App;*/
+
+\*App.css
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(120deg, #89f7fe, #66a6ff);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.intro {
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 30px;
+  background: #ffffffaa;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.input-area {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+input {
+  padding: 10px;
+  width: 65%;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
+  padding: 0 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  background-color: white;
+  margin: 10px 0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.todo-item h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.todo-item p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: gray;
+}
+
+.del-btn {
+  background-color: #dc3545;
+  border: none;
+  padding: 8px 10px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.del-btn:hover {
+  background-color: #c82333;
+}
+
+.empty {
+  color: #fff;
+  font-style: italic;
+  margin-top: 20px;
+}*/
+\*index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);*/
+
+
+
